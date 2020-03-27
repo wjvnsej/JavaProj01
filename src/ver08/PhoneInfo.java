@@ -1,13 +1,15 @@
-package ver07;
+package ver08;
+
+import java.io.Serializable;
+
 /*
-7단계[컬렉션] : PhoneBookVer07.java
-동명이인이 있다고 가정했을때 3단계에서 진행한 배열을 이용해서는 
-구조적으로 중복을 막을수 없다. 이번에는 중복 저장을 허용하지 않는 
-HashSet<E> 클래스를 대상으로 저장이 되도록 해보자. 
-“이름이 같으면 다른 정보가 달라도 동일한 객체(인스턴스)로 간주한다”
-즉 동일한 이름을 입력하는 경우라면 덮어쓸지 여부를 물어본후 처리한다.
+8단계[IO] : PhoneBookVer08.java
+컬렉션 기반으로 변경후 인스턴스를 저장하기 위해 IO(입출력)을 적용하자.
+ObjectInputStream, ObjectOutputStream 클래스를 기반으로 제작한다.
+파일의 저장은 프로그램을 종료하는 시점에 이루어져야 하고, 
+프로그램 시작 직후 전체정보를 조회하면 기존에 입력된 정보들이 출력되어야 한다.
  */
-public class PhoneInfo {
+public class PhoneInfo implements Serializable{
 	
 	//멤버변수
 	String name;

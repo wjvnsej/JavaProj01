@@ -1,5 +1,6 @@
 package ver06;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class PhoneBookManager {
@@ -12,11 +13,62 @@ public class PhoneBookManager {
 		phonebooks = new PhoneInfo[num];
 		infoNums = 0;
 	}
+	
+	public void start() {
+		
+		while(true) {
 
-	public PhoneBookManager(String name, String phoneNumber) {
-
-		this.name = name;
-		this.phoneNumber = phoneNumber;
+			Scanner scan = new Scanner(System.in);
+			
+			menuShow();
+			
+			try {
+				int choice = scan.nextInt();
+				
+				if(choice < 1 || choice > 5) {
+					MenuSelectException notInt = 
+							new MenuSelectException();
+					throw notInt;						
+				}
+				
+				switch (choice) {
+					case MenuItem.INPUT: 
+						addBook();
+						break;
+					case MenuItem.SEARCH:
+						searchBook();
+						break;
+					case MenuItem.DELETE:
+						deleteBook();
+						break;
+					case MenuItem.PRINT:
+						showBook();
+						break;
+					case MenuItem.END:
+						System.out.println("프로그램을 종료합니다.");
+						return;	
+				}
+			}
+			catch (MenuSelectException e) {
+				System.out.println(e.getMessage());
+			}
+			catch (InputMismatchException  e) {
+				System.out.println("문자말고 숫자를 입력해주세요.");
+				scan.nextLine();
+			}
+			
+		}
+	}
+	
+	//메뉴출력
+	public void menuShow() {
+		System.out.println("선택하세요...");
+		System.out.println("1. 데이터 입력");
+		System.out.println("2. 데이터 검색");
+		System.out.println("3. 데이터 삭제");
+		System.out.println("4. 주소록 출력");
+		System.out.println("5. 프로그램종료");
+		System.out.print("선택 : ");
 	}
 
 	// 친구정보 저장
@@ -37,10 +89,12 @@ public class PhoneBookManager {
 		phoneNumber = scan.nextLine();
 
 		switch (select) {
+		
 		case SubMenuItem.BASIC:
 			PhoneInfo info = new PhoneInfo(name, phoneNumber);
 			phonebooks[infoNums++] = info;
 			break;
+			
 		case SubMenuItem.SCHOOL:
 			System.out.println("전공 : ");
 			major = scan.nextLine();
@@ -50,6 +104,7 @@ public class PhoneBookManager {
 					new PhoneSchoolInfo(name, phoneNumber, major, grade);
 			phonebooks[infoNums++] = s_Info;
 			break;
+			
 		case SubMenuItem.COMPANY:
 			System.out.println("회사 : ");
 			c_name = scan.nextLine();
@@ -65,11 +120,6 @@ public class PhoneBookManager {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("데이터 검색을 시작합니다..");
 		System.out.println("이름 : ");
-		try {
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 		String searchName = scan.nextLine();
 
 		for (int i = 0; i < infoNums; i++) {

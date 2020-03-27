@@ -1,15 +1,29 @@
-package ver07;
+package ver08;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class PhoneBookManager {
-
+public class PhoneBookManager {	   
 	HashSet<Object> set;
 	public PhoneBookManager() {
-		set = new HashSet<Object>();
+		try {
+			
+			ObjectInputStream in = new ObjectInputStream(
+					new FileInputStream("src/ver08/PhoneBook.obj"));
+			
+			set = (HashSet<Object>) in.readObject();
+			
+		} 
+		catch (Exception e) {
+			set = new HashSet<Object>();
+		}
 	}
 	
 	public void start() {
@@ -43,6 +57,7 @@ public class PhoneBookManager {
 						showBook();
 						break;
 					case MenuItem.END:
+						savePhoneBook();
 						System.out.println("프로그램을 종료합니다.");
 						return;	
 				}
@@ -212,4 +227,43 @@ public class PhoneBookManager {
 	      }
 		System.out.println("주소록 출력이 완료되었습니다.");
 	}
+	
+	public void savePhoneBook() {		
+		try {
+			ObjectOutputStream out = 
+					new ObjectOutputStream(
+							new FileOutputStream
+								("src/ver08/PhoneBook.obj")
+					);
+					
+				out.writeObject(set);
+			
+		}
+		catch (IOException e) {
+			System.out.println("파일이 저장되지 않았습니다.");
+			e.printStackTrace();
+		}
+	}
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

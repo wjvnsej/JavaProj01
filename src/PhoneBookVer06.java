@@ -1,88 +1,24 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import ver06.MenuItem;
 import ver06.PhoneBookManager;
-import ver06.MenuSelectException;
 /*
-5단계[추상클래스] : PhoneBookVer05.java
-기존 프로그램은 메뉴입력을 할 때 이름이 부여된 상수가 아닌 정수로 처리되고 있다.
-때문에 Ver05 에서는 interface 기반의 상수표현에 의한 처리를 해보도록 한다. 
-이를 통하여 코드는 보다 명확해 질 것이다.
+6단계[예외처리] : PhoneBookVer06.java
+-예외처리1 : 메뉴를 입력할 때 1~5이외의 정수를 입력했을경우 
+MenuSelectException(개발자정의) 예외를 발생시키고 이를 적절히 처리해보자.
+-예외처리2 : 메뉴를 선택할 때 정수대신 문자열을 입력하면
+ InputMismatchException 예외가 발생될것이다. 이를 적절히 예외처리 해보자.
+-예외처리3 : 이클립스에서는 검색결과가 없을때 NullPointerException이 발생한다. 
+이를 적절히 처리해보자.(테스트시 발생여부가 확인되지 않는다면 그냥 넘어간다)
 
-1.데이터입력
-2.데이터검색
-3.데이터삭제
-4.프로그램종료
-
-1.일반
-2.학교동창
-3.회사동료
-위의 메뉴를 interface를 통한 상수로 처리해본다.
+조건
+- 메뉴입력은 nextInt(); 를 사용한다.
+- 예외가 발생할 경우 메시지를 띄워주고 메뉴를 재선택 하도록 처리한다. 
+즉 프로그램이 종료되지 않도록 한다.
  */
 public class PhoneBookVer06 {
 	
-	public static void menuShow() {
-		System.out.println("선택하세요...");
-		System.out.println("1. 데이터 입력");
-		System.out.println("2. 데이터 검색");
-		System.out.println("3. 데이터 삭제");
-		System.out.println("4. 주소록 출력");
-		System.out.println("5. 프로그램종료");
-		System.out.print("선택 : ");
-	}
-
 	public static void main(String[] args) {
 		
 		PhoneBookManager manager = new PhoneBookManager(100); 
+		manager.start();
 		
-		while(true) {
-
-			Scanner scan = new Scanner(System.in);
-			menuShow();
-			try {
-				int choice = scan.nextInt();
-				
-				if(choice < 1 || choice > 5) {
-					MenuSelectException notInt = 
-							new MenuSelectException();
-					throw notInt;						
-				}
-				
-				switch (choice) {
-					case MenuItem.INPUT: 
-						manager.addBook();
-						break;
-					case MenuItem.SEARCH:
-						manager.searchBook();
-						break;
-					case MenuItem.DELETE:
-						manager.deleteBook();
-						break;
-					case MenuItem.PRINT:
-						manager.showBook();
-						break;
-					case MenuItem.END:
-						System.out.println("프로그램을 종료합니다.");
-						return;	
-				}
-			}
-			catch (MenuSelectException e) {
-				System.out.println(e.getMessage());
-			}
-			catch (InputMismatchException  e) {
-				System.out.println("문자말고 숫자를 입력해주세요.");
-				scan.nextLine();
-			}
-			
-		}
 	}
 }
-
-
-
-
-
-
-
-

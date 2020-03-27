@@ -1,88 +1,18 @@
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import ver05.MenuItem;
-import ver05.PhoneBookManager;
-import ver06.MenuSelectException;
+import ver07.PhoneBookManager;
 /*
-5단계[추상클래스] : PhoneBookVer05.java
-기존 프로그램은 메뉴입력을 할 때 이름이 부여된 상수가 아닌 정수로 처리되고 있다.
-때문에 Ver05 에서는 interface 기반의 상수표현에 의한 처리를 해보도록 한다. 
-이를 통하여 코드는 보다 명확해 질 것이다.
-
-1.데이터입력
-2.데이터검색
-3.데이터삭제
-4.프로그램종료
-
-1.일반
-2.학교동창
-3.회사동료
-위의 메뉴를 interface를 통한 상수로 처리해본다.
+7단계[컬렉션] : PhoneBookVer07.java
+동명이인이 있다고 가정했을때 3단계에서 진행한 배열을 이용해서는 
+구조적으로 중복을 막을수 없다. 이번에는 중복 저장을 허용하지 않는 
+HashSet<E> 클래스를 대상으로 저장이 되도록 해보자. 
+“이름이 같으면 다른 정보가 달라도 동일한 객체(인스턴스)로 간주한다”
+즉 동일한 이름을 입력하는 경우라면 덮어쓸지 여부를 물어본후 처리한다.
  */
 public class PhoneBookVer07 {
 	
-	public static void menuShow() {
-		System.out.println("선택하세요...");
-		System.out.println("1. 데이터 입력");
-		System.out.println("2. 데이터 검색");
-		System.out.println("3. 데이터 삭제");
-		System.out.println("4. 주소록 출력");
-		System.out.println("5. 프로그램종료");
-		System.out.print("선택 : ");
-	}
-
 	public static void main(String[] args) {
 		
-		PhoneBookManager manager = new PhoneBookManager(100); 
+		PhoneBookManager manager = new PhoneBookManager(); 
+		manager.start();
 		
-		while(true) {
-
-			Scanner scan = new Scanner(System.in);
-			menuShow();
-			try {
-				int choice = scan.nextInt();
-				
-				if(choice < 1 || choice > 5) {
-					MenuSelectException notInt = 
-							new MenuSelectException();
-					throw notInt;						
-				}
-				
-				switch (choice) {
-					case MenuItem.INPUT: 
-						manager.addBook();
-						break;
-					case MenuItem.SEARCH:
-						manager.searchBook();
-						break;
-					case MenuItem.DELETE:
-						manager.deleteBook();
-						break;
-					case MenuItem.PRINT:
-						manager.showBook();
-						break;
-					case MenuItem.END:
-						System.out.println("프로그램을 종료합니다.");
-						return;	
-				}
-			}
-			catch (MenuSelectException e) {
-				System.out.println(e.getMessage());
-			}
-			catch (InputMismatchException  e) {
-				System.out.println("문자말고 숫자를 입력해주세요.");
-				scan.nextLine();
-			}
-			
-		}
 	}
 }
-
-
-
-
-
-
-
-

@@ -13,12 +13,44 @@ public class PhoneBookManager {
 		infoNums = 0;
 	}
 	
-	public PhoneBookManager
-		(String name, String phoneNumber, String birthday) {
+	//메뉴출력
+	public void menuShow() {
+		System.out.println("선택하세요...");
+		System.out.println("1. 데이터 입력");
+		System.out.println("2. 데이터 검색");
+		System.out.println("3. 데이터 삭제");
+		System.out.println("4. 주소록 출력");
+		System.out.println("5. 프로그램종료");
+		System.out.print("선택 : ");
+	}
+	
+	public void start() {
+		
+		while(true) {
 
-		this.name = name;
-		this.phoneNumber = phoneNumber;
-		this.birthday = birthday;
+			menuShow();
+
+			Scanner scan = new Scanner(System.in);
+			int choice = scan.nextInt();
+			
+			switch (choice) {
+			case 1: 
+				addBook();
+				break;
+			case 2:
+				searchBook();
+				break;
+			case 3:
+				deleteBook();
+				break;
+			case 4:
+				showBook();
+				break;
+			case 5:
+				System.out.println("프로그램을 종료합니다.");
+				return;
+			}
+		}
 	}
 	
 	//친구정보 저장
@@ -37,6 +69,7 @@ public class PhoneBookManager {
 				(name, phoneNumber, birthday);
 		phonebooks[infoNums++] = info;
 	}
+	
 	//친구정보 검색
 	public void searchBook() {
 		Scanner scan = new Scanner(System.in);
@@ -54,6 +87,7 @@ public class PhoneBookManager {
 			}
 		}
 	}
+	
 	//친구정보 삭제
 	public void deleteBook() {
 		Scanner scan = new Scanner(System.in);
@@ -90,27 +124,3 @@ public class PhoneBookManager {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
