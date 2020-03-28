@@ -1,6 +1,6 @@
 package ver04;
 /*
-4단계[상속] 
+4단계[상속] : PhoneBookVer04.java
 
 [실행결과]
 03Lecture\03.JAVA\Java소스\Ver1.0\LevelProject

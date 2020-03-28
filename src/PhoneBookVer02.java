@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 import ver02.PhoneInfo;
 /*
+2단계[콘솔입출력] : PhoneBookVer02.java
 프로그램 사용자로부터 데이터를 입력받는 형태로 변경하시오.
 단 반복문을 이용해서 프로그램의 흐름이 계속 유지되도록 해야한다. 
 사용자가 종료를 명령하지 않으면 다음과 같은 과정이 반복적으로 이루어진다.

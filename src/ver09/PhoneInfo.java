@@ -1,26 +1,22 @@
-package ver01;
+package ver09;
 /*
-1단계[Class생성] : PhoneBookVer01.java
-다음과 같은 클래스를 정의하시오.
-클래스명 : PhoneInfo
+9단계[JDBC] : PhoneBookVer09.java
+테이블 생성 
+이름, 전화번호, 생년월일을 저장할수 있는 테이블을 생성한다.
+테이블명 : phonebook_tb
+primary key와 같은 제약조건도 걸어준다.
+시퀀스 생성
+시퀀스명 : seq_phonebook
 
-멤버1 : 이름 String name
-멤버2 : 전화번호 String phoneNumber 
-멤버3 : 생년월일 String birthday
-인스턴스를 생성할 때 이름과 전화번호는 필수입력이고 생년월일은 선택사항이다.
-그러므로 생년월일은 없어도 인스턴스 생성이 되야한다.(생성자 메소드 오버로딩)
-인스턴스 생성이 되었다면 해당정보를 출력할수 있는 showPhoneInfo()라는 메소드도 정의한다. 
-인스턴스 생성은 코드상에서 바로 한다.
+입력 : dataInput()
+PreparedStatement 클래스 이용
+검색 : dataSearch()
+Statement 클래스 이용
+삭제 : dataDelete()
+PreparedStatement 클래스 이용
 
-실행결과>
-Process started >>>
-이름:성낙현
-전화번호:010-7906-3600
-생년월일:751130
-
-이름:류상미
-전화번호:010-7669-4120
-생년월일:입력되지않음
+위 부분을 DML문을 이용하여 구현한다. 
+입력은 insert, 검색은 like를 이용한 select, 삭제는 delete로 구현하면 된다.
  */
 public class PhoneInfo {
 	
