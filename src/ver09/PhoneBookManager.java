@@ -100,7 +100,8 @@ public class PhoneBookManager {
 		
 		try {
 			
-			String query = "INSERT INTO phonebook_tb VALUES (?, ?, ?)";
+			String query = "INSERT INTO phonebook_tb VALUES "
+					+ "(seq_phonebook.nextval, ?, ?, ?)";
 			
 			psmt = con.prepareStatement(query);
 			
@@ -130,28 +131,27 @@ public class PhoneBookManager {
 	//친구정보 검색
 	public void dataSearch() {
 		try {
-			while(true) {
-	
-				stmt = con.createStatement();
-				Scanner scan = new Scanner(System.in);
-				System.out.println("검색할 이름 입력 : ");
-				String inputName = scan.nextLine();
+			
+			stmt = con.createStatement();
+			Scanner scan = new Scanner(System.in);
+			System.out.println("검색할 이름 입력 : ");
+			String inputName = scan.nextLine();
+			
+			String query = "SELECT * FROM phonebook_tb "
+					+ "WHERE name LIKE " + "'" + inputName + "'";
+			
+			rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				String name = rs.getString(2);
+				String phone = rs.getString("phone");
+				String birth = rs.getString("birth");
 				
-				String query = "SELECT * FROM phonebook_tb "
-						+ "WHERE name LIKE " + "'" + inputName + "'";
+				System.out.printf("이름 : %s\n전화번호 : %s\n생년월일 : %s\n",
+						name, phone, birth);
+				System.out.println("검색을 완료했습니다.");
 				
-				rs = stmt.executeQuery(query);
-				while(rs.next()) {
-					String name = rs.getString(1);
-					String phone = rs.getString("phone");
-					String birth = rs.getString("birth");
-					
-					System.out.printf("이름 : %s\n전화번호 : %s\n생년월일 : %s\n",
-							name, phone, birth);
-					System.out.println("검색을 완료했습니다.");
-					
-				}
 			}
+	
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -190,7 +190,7 @@ public class PhoneBookManager {
 
 			rs = psmt.executeQuery(query);	
 			while(rs.next()) {
-				String name = rs.getString(1);
+				String name = rs.getString(2);
 				String phone = rs.getString("phone");
 				String birth = rs.getString("birth");
 				
