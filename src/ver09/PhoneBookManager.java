@@ -140,7 +140,6 @@ public class PhoneBookManager {
 				String query = "SELECT * FROM phonebook_tb "
 						+ "WHERE name LIKE " + "'" + inputName + "'";
 				
-				
 				rs = stmt.executeQuery(query);
 				while(rs.next()) {
 					String name = rs.getString(1);
