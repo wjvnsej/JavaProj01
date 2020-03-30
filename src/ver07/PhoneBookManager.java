@@ -125,7 +125,7 @@ public class PhoneBookManager {
 		switch (select) {
 			case SubMenuItem.BASIC:
 				set.add(new PhoneInfo(name, phoneNumber));
-				System.out.println("[ 저장 후 객체 수 ] : " + set.size());
+				System.out.println("[ 저장 후 연락처 수 ] : " + set.size());
 				break;
 				
 			case SubMenuItem.SCHOOL:
@@ -136,7 +136,7 @@ public class PhoneBookManager {
 				
 				set.add(new PhoneSchoolInfo
 						(name, phoneNumber, major, grade));
-				System.out.println("[ 저장 후 객체 수 ] : " + set.size());
+				System.out.println("[ 저장 후 연락처 수 ] : " + set.size());
 				break;
 				
 			case SubMenuItem.COMPANY:
@@ -145,7 +145,7 @@ public class PhoneBookManager {
 				
 				set.add(new PhoneCompanyInfo
 						(name, phoneNumber, c_name));
-				System.out.println("[ 저장 후 객체 수 ] : " + set.size());
+				System.out.println("[ 저장 후 연락처 수 ] : " + set.size());
 			break;
 		}
 	}
@@ -196,7 +196,7 @@ public class PhoneBookManager {
 		}
 		if(deleteFlag == true) {
 			System.out.println("데이터를 삭제했습니다.");
-			System.out.println("[삭제 후 객체 수 ] : " + set.size());
+			System.out.println("[삭제 후 연락처 수 ] : " + set.size());
 		}
 		else {
 			System.out.println("검색결과가 없습니다.");
