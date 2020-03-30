@@ -185,7 +185,7 @@ public class PhoneBookManager {
 		try {
 
 			System.out.println("주소록 출력을 시작합니다..");
-			String query = "select * FROM phonebook_tb";
+			String query = "SELECT * FROM phonebook_tb";
 			psmt = con.prepareStatement(query);
 
 			rs = psmt.executeQuery(query);	
