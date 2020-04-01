@@ -11,9 +11,24 @@ public class PhoneCompanyInfo extends PhoneInfo {
 	}
 	
 	@Override
-	public void showPhoneInfo() {
-		super.showPhoneInfo();
-		System.out.println("회사명 : " + c_name);
+	public int hashCode() {
+		
+		int hc1 = name.hashCode();
+		int hc2 = phoneNumber.hashCode();
+		int result = hc1 + hc2;
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		
+		PhoneInfo phoneInfo = (PhoneInfo)obj;
+		if(phoneInfo.name.equals(this.name)) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 		
 	@Override

@@ -180,7 +180,7 @@ public class PhoneBookManager {
 			PhoneInfo phoneInfo = (PhoneInfo) itr.next();
 			if(searchName.equals(phoneInfo.name)) {
 				searchFlag = true;
-	            phoneInfo.showPhoneInfo();
+				System.out.println(phoneInfo.toString());
 	         }
 		}
 		if(searchFlag == true) {

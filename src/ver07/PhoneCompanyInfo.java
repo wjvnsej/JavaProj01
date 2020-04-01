@@ -18,7 +18,8 @@ public class PhoneCompanyInfo extends PhoneInfo {
 		
 	@Override
 	   public String toString() {
-	      return super.toString() + "\n회사명 : " + c_name;
+	      return "이름 : " + name + "\n전화번호 : " + phoneNumber 
+	    		  + "\n회사명 : " + c_name;
 	   }
 
 }

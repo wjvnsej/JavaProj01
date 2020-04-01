@@ -21,7 +21,7 @@ public class PhoneSchoolInfo extends PhoneInfo{
 		
 	@Override
 	   public String toString() {
-	      return super.toString() + 
+	      return "이름 : " + name + "\n전화번호 : " + phoneNumber + 
 	    		  "\n전공 : " + major + "\n학년 : " + grade;
 	   }
 }
